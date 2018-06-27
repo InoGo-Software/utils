@@ -61,7 +61,6 @@ fpath=($fpath "/home/REPLACE_USER/.zfunctions")
 
 # Set Spaceship ZSH as a prompt
 autoload -U promptinit; promptinit
-prompt spaceship
 fpath=($fpath "/home/REPLACE_USER/.zfunctions")
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
