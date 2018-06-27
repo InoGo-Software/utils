@@ -1,5 +1,5 @@
 shellcheck:
     before_script:
-        - sudo apt install shellcheck
+        - apt-get install shellcheck
     script:
         - shellcheck *.sh
