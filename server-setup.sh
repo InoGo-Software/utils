@@ -1,3 +1,5 @@
+#!/bin/bash
+
 sudo apt update -y
 sudo apt upgrade -y
 
@@ -11,10 +13,10 @@ cp ./.zshrc ~/.zshrc
 sed -i 's/REPLACE_USER/'"$USER"'/g' ~/.zshrc
 
 # Install zsh autosuggestions
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-autosuggestions
 
 # Install zsh syntax highlighting
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-syntax-highlighting
 
 # Copy vim config
 cp ./.vimrc ~/.vimrc
