@@ -24,7 +24,7 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 
 yes "" | vim +PlugInstall +qall
 
-cp "$home/.vim/bundle/dracula/autoload/dracula.vim" "$home/.vim/autoload/"
-cp "$home/.vim/bundle/dracula/colors/dracula.vim" "$home/.vim/colors/"
+cp "$HOME/.vim/bundle/dracula/autoload/dracula.vim" "$HOME/.vim/autoload/"
+cp "$HOME/.vim/bundle/dracula/colors/dracula.vim" "$HOME/.vim/colors/"
 
 chsh -s /bin/zsh
