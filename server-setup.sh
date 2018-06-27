@@ -20,8 +20,11 @@ mkdir -p "~/.vim" "~/.vim/autoload" "~/.vim/bundle" "~/.vim/colors"
 
 # Install vim-plug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 yes "" | vim +PlugInstall +qall
+
+cp "$home/.vim/bundle/dracula/autoload/dracula.vim" "$home/.vim/autoload/"
+cp "$home/.vim/bundle/dracula/colors/dracula.vim" "$home/.vim/colors/"
 
 chsh -s /bin/zsh
