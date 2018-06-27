@@ -195,11 +195,6 @@ Plug 'dracula/vim', {'as': 'dracula'}       " Dracula theme
 
 call plug#end()
 
-"" Install the colorscheme
-if empty(glob('~/.vim/autoload/onedark.vim'))
-        execute 'cp ~/.vim/bundle/onedark.vim/colors/onedark.vim ~/.vim/colors/onedark.vim && cp ~/.vim/bundle/onedark.vim/autoload/onedark.vim ~/.vim/autoload/onedark.vim'
-endif
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" => Plugin Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

@@ -4,7 +4,7 @@ export ZSH=/home/REPLACE_USER/.oh-my-zsh
 bindkey '^H' backward-kill-word
 
 # ZSH settings
-ZSH_THEME="spaceship"
+ZSH_THEME="agnoster"
 DEFAULT_USER=NOTTHIS
 COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
