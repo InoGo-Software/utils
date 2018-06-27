@@ -15,9 +15,13 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 # Copy vim config
 cp ./.vimrc ~/.vimrc
 
-
 # Create the required directories
 mkdir -p "~/.vim" "~/.vim/autoload" "~/.vim/bundle" "~/.vim/colors"
+
+# Install vim-plug
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
 yes "" | vim +PlugInstall +qall
 
 chsh -s /bin/zsh
