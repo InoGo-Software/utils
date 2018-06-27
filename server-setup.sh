@@ -9,8 +9,12 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 # Copy zsh config
 cp ./.zshrc ~/.zshrc
 sed -i 's/REPLACE_USER/'"$USER"'/g' ~/.zshrc
-sudo apt install -y zsh-syntax-highlighting
+
+# Install zsh autosuggestions
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
+# Install zsh syntax highlighting
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
 # Copy vim config
 cp ./.vimrc ~/.vimrc
@@ -22,9 +26,12 @@ mkdir -p ~/.vim ~/.vim/autoload ~/.vim/bundle ~/.vim/colors
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
+# Install vim plugins
 yes "" | vim +PlugInstall +qall
 
+# Copy the color scheme
 cp "$HOME/.vim/bundle/dracula/autoload/dracula.vim" "$HOME/.vim/autoload/"
 cp "$HOME/.vim/bundle/dracula/colors/dracula.vim" "$HOME/.vim/colors/"
 
+# Set zsh as the default shell
 chsh -s /bin/zsh
