@@ -1,4 +1,4 @@
-image: koalaman/shellcheck:latest
+image: koalaman/shellcheck-alpine:latest
 
 shellcheck:
   script:
