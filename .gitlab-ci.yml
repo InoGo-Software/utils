@@ -1,6 +1,5 @@
+image: koalaman/shellcheck:latest
+
 shellcheck:
-    before_script:
-        - apt-get update && apt-get upgrade
-        - apt-get install shellcheck
-    script:
-        - shellcheck *.sh
+  script:
+    - shellcheck *.sh
