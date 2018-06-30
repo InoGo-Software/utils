@@ -37,3 +37,6 @@ cp "$HOME/.vim/bundle/dracula/colors/dracula.vim" "$HOME/.vim/colors/"
 
 # Set zsh as the default shell
 chsh -s /bin/zsh
+
+# Source .zshrc to update the zsh configuration
+source ~/.zshrc
