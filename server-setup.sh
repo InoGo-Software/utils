@@ -39,4 +39,5 @@ cp "$HOME/.vim/bundle/dracula/colors/dracula.vim" "$HOME/.vim/colors/"
 chsh -s /bin/zsh
 
 # Source .zshrc to update the zsh configuration
-source ~/.zshrc
+# shellcheck source=/dev/null
+source "$USER/.zshrc"
