@@ -47,6 +47,8 @@ alias PATH='echo $PATH | tr ":" "\n" | sort | nl'
 alias r='trash-put'
 alias freespace='ncdu'
 alias s='sudo systemctl'
+alias v='vim .'
+alias z='vim ~/.zshrc'
 
 # ZSH cache
 ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
