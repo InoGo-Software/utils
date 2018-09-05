@@ -49,6 +49,7 @@ alias freespace='ncdu'
 alias s='sudo systemctl'
 alias v='vim .'
 alias z='vim ~/.zshrc'
+alias sz='source ~/.zshrc'
 
 # ZSH cache
 ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
