@@ -13,7 +13,7 @@ DISABLE_AUTO_UPDATE="false"
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=7'
 
 # Plugins
-plugins=(git command-not-found common-aliases zsh-autosuggestions zsh-syntax-highlighting docker django pip)
+plugins=(git command-not-found common-aliases zsh-autosuggestions zsh-syntax-highlighting docker docker-compose)
 
 # Settings
 export DISABLE_UPDATE_PROMPT=true
@@ -27,7 +27,7 @@ export GPG_TTY=$(tty)
 # Functions
 function lazygit() {
         git add .
-        git commit -S -a -m "$1"
+        git commit -m "$1"
         git push
 }
 
