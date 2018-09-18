@@ -25,6 +25,7 @@ cnoreabbrev Qall qall
 " Opens a tab edit command with the path of the currently edited file filled
 noremap <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 
+" Double j or k goes to normal mode
 imap jj <Esc>
 imap kk <Esc>
 
@@ -35,6 +36,10 @@ set tabstop=4               " Number of visual spaces per TAB
 set softtabstop=4           " Number of spaces in tab when editing
 set expandtab               " Tabs are spaces
 
+autocmd FileType javascript setlocal tabstop=2 softtabstop=2 shiftwidth=2
+autocmd FileType php setlocal tabstop=2 softtabstop=2 shiftwidth=2
+autocmd FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2
+autocmd FileType yml setlocal tabstop=2 softtabstop=2 shiftwidth=2
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => UI
