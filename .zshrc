@@ -12,8 +12,10 @@ ENABLE_CORRECTION="false"
 DISABLE_AUTO_UPDATE="false"
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=7'
 
+
 # Plugins
 plugins=(git command-not-found common-aliases zsh-autosuggestions zsh-syntax-highlighting docker docker-compose)
+
 
 # Settings
 export DISABLE_UPDATE_PROMPT=true
@@ -23,6 +25,7 @@ export GIT_EDITOR='vim'
 export ECTO_EDITOR=$EDITOR
 export SSH_KEY_PATH='~/.ssh/rsa_id'
 export GPG_TTY=$(tty)
+
 
 # Functions
 function lazygit() {
@@ -42,6 +45,7 @@ function up() {
         sudo apt clean
 }
 
+
 # Aliases
 alias PATH='echo $PATH | tr ":" "\n" | sort | nl'
 alias r='trash-put'
@@ -50,6 +54,7 @@ alias s='sudo systemctl'
 alias v='vim .'
 alias z='vim ~/.zshrc'
 alias sz='source ~/.zshrc'
+
 
 # ZSH cache
 ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
