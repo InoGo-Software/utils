@@ -40,4 +40,4 @@ chsh -s /bin/zsh
 
 # Source .zshrc to update the zsh configuration
 # shellcheck source=/dev/null
-source "$USER/.zshrc"
+source ~/.zshrc
