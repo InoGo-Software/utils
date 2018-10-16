@@ -20,6 +20,7 @@ plugins=(git command-not-found common-aliases zsh-autosuggestions zsh-syntax-hig
 # Settings
 export DISABLE_UPDATE_PROMPT=true
 export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
 export EDITOR='vim'
 export GIT_EDITOR='vim'
 export ECTO_EDITOR=$EDITOR
