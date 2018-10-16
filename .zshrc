@@ -53,8 +53,10 @@ alias r='trash-put'
 alias freespace='ncdu'
 alias s='sudo systemctl'
 alias v='vim .'
-alias z='vim ~/.zshrc'
+alias z='vim ~/.zshrc && sz'
 alias sz='source ~/.zshrc'
+alias vr='vim ~/.vimrc && sv'
+alias sv='source ~/.vimrc'
 
 
 # ZSH cache
