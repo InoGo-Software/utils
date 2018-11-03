@@ -57,6 +57,7 @@ alias z='vim ~/.zshrc && sz'
 alias sz='source ~/.zshrc'
 alias vr='vim ~/.vimrc && sv'
 alias sv='source ~/.vimrc'
+alias dockerps="docker ps --format 'table {{.Names}}\t{{.Image}}'"
 
 
 # ZSH cache
