@@ -1,3 +1,19 @@
+" Download vim-plug if it's not installed yet
+if empty(glob("~/.vim/autoload/plug.vim"))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  auto VimEnter * PlugInstall
+endif
+
+if !empty(glob("~/.fzf/bin/fzf"))
+  if empty(glob("~/.fzf/bin/rg"))
+    silent !curl -fLo /tmp/rg.tar.gz
+          \ https://github.com/BurntSushi/ripgrep/releases/download/0.4.0/ripgrep-0.4.0-x86_64-unknown-linux-musl.tar.gz
+    silent !tar xzvf /tmp/rg.tar.gz --directory /tmp
+    silent !cp /tmp/ripgrep-0.4.0-x86_64-unknown-linux-musl/rg ~/.fzf/bin/rg
+  endif
+endif
+
 set history=700             " Sets how many lines vim has to remember
 set autoread                " Set to auto read when a file is changed from the outside
 set ignorecase
@@ -7,7 +23,7 @@ let mapleader=","           " Leader is comma
 set backspace=indent,eol,start
 set confirm
 set encoding=UTF-8
-map Y y$
+map Y yy
 
 " :W sudo saves the file
 " (useful for handling the permission-denied error)
@@ -25,7 +41,7 @@ cnoreabbrev Qall qall
 " Opens a tab edit command with the path of the currently edited file filled
 noremap <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 
-" Double j or k goes to normal mode
+" Opens a tab edit command with the path of the currently edited file filled
 imap jj <Esc>
 imap kk <Esc>
 
@@ -51,7 +67,7 @@ filetype indent on          " Load filetype-specific indent files
 set wildmenu                " Visual autocomplete for command menu
 set lazyredraw              " Redraw only when needed
 set showmatch               " Highlight matching brackets
-set foldcolumn=1            " Add a margin to the left
+set foldcolumn=0            " Add a margin to the left
 set laststatus=2            " Size for the status bar
 set noshowmode              " Hides the mode below the status line
 
@@ -79,7 +95,7 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax enable               " Syntax theme
 " colorscheme dracula         " awesome colorscheme
-color dracula
+color onedark
 
 " Enable 256 colors palette in Gnome Terminal
 if $COLORTERM == 'gnome-terminal'
@@ -103,10 +119,6 @@ vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set foldenable              " Enable folding
-set foldlevelstart=10       " Open most folds by default
-set foldnestmax=10          " 10 nested fold max
-set foldmethod=indent       " fold based on indent level
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -120,8 +132,8 @@ nnoremap B ^
 nnoremap E $
 
 " $/^ doesn't do anything
-nnoremap $ <nop>
-nnoremap ^ <nop>
+" nnoremap $ <nop>
+" nnoremap ^ <nop>
 
 " Smart way to move between windows
 map <C-j> <C-W>j
@@ -130,7 +142,7 @@ map <C-h> <C-W>h
 map <C-l> <C-W>l
 
 " Use tab to switch tabs
-nnoremap <Tab> gt
+" nnoremap <Tab> gt
 
 " Vmap for maintain Visual Mode after shifting > and <
 vmap < <gv
@@ -173,14 +185,35 @@ endfunction
 
 autocmd VimEnter * call ToggleNumber()
 
+let g:rg_command = '
+\ rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --color "always"
+\ -g "*.{ts,js,json,php,md,styl,pug,jade,html,config,py,cpp,c,go,hs,rb,conf,fa,lst}"
+\ -g "!{.config,.git,node_modules,vendor,build,yarn.lock,*.sty,*.bst,*.coffee,dist}/*" '
+
+command! -bang -nargs=* F call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1, <bang>0)
+
+function! s:repeat_block(key) abort
+  if a:key ==# '.'
+    return get(s:, 'v_repeat_count', '').get(s:, 'v_repeat_key', '')
+  endif
+
+  let s:v_repeat_count = v:count1
+  let s:v_repeat_key = a:key
+  return a:key
+endfunction
+
+for k in ['w', 'W', 's', 'p', '[', ']', '(', ')', 'b', '<', '>', 't', '{', '}', 'B', '"', "'", '`']
+  execute printf('vnoremap <expr> a%s <sid>repeat_block(''a%s'')', k, k)
+  execute printf('vnoremap <expr> i%s <sid>repeat_block(''i%s'')', k, k)
+endfor
+
+unlet! k
+
+vnoremap <expr> . <sid>repeat_block('.')
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Download vim-plug if it's not installed yet
-if empty(glob("~/.vim/autoload/plug.vim"))
-        execute '!curl -fLo ~/.vim/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim'
-endif
 
 call plug#begin('~/.vim/bundle')
 
@@ -190,10 +223,19 @@ Plug 'tpope/vim-commentary'                 " Comment stuff
 Plug 'Chiel92/vim-autoformat'               " Autoformat
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fuzy file finder
 Plug 'junegunn/fzf.vim'                     " Fuzy file finder
+Plug 'w0rp/ale'                             " Linter/formatter
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+Plug 'terryma/vim-expand-region'            " Expand selection
 
 "" Appearance
 Plug 'itchyny/lightline.vim'                " A light and configurable statusline/tabline plugin for Vim
 Plug 'jistr/vim-nerdtree-tabs'              " Nerdtree tabs
+Plug 'sheerun/vim-polyglot'                 " Syntax pack
+
+"" Snippets
+Plug 'SirVer/ultisnips'                     " Snippet engine
+Plug 'honza/vim-snippets'                   " General snippets
+Plug 'isRuslan/vim-es6'                     " Snippets for ES6
 
 "" Colorschemes
 Plug 'dracula/vim', {'as': 'dracula'}       " Dracula theme
@@ -214,10 +256,19 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
 " Open a NERDTree automatically if no file is specified
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-" lightline
-let g:lightline = { 'colorscheme': 'darcula' }
+" ALE settings
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['prettier', 'eslint'],
+\}
 
+" Snippet trigger key
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
+
+" FZF settings
 nnoremap <C-b> :Buffers<CR>
-nnoremap <C-g> :FZF<CR>
+nnoremap <C-g> :GFiles<CR>
 nnoremap <leader><leader> :Commands<CR>
-
+nnoremap <space> :PrettierAsync<CR>
