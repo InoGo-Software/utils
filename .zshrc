@@ -5,7 +5,7 @@ bindkey '^H' backward-kill-word
 
 # ZSH settings
 ZSH_THEME="agnoster"
-DEFAULT_USER=NOTTHIS
+DEFAULT_USER=`whoami`
 COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 ENABLE_CORRECTION="false"
