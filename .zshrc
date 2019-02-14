@@ -46,6 +46,12 @@ function up() {
         sudo apt clean
 }
 
+function amend() {
+        git add .
+        git commit --amend --no-edit
+        git push -f
+}
+
 
 # Aliases
 alias PATH='echo $PATH | tr ":" "\n" | sort | nl'
