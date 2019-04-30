@@ -1,5 +1,0 @@
-image: koalaman/shellcheck-alpine:latest
-
-shellcheck:
-  script:
-    - shellcheck *.sh
