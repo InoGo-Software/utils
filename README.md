@@ -10,6 +10,7 @@
 
 # Prerequisites
 
+* Debian-based system
 * git
 
 # Install
