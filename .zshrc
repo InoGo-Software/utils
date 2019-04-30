@@ -65,7 +65,7 @@ alias vr='vim ~/.vimrc && sv'
 alias sv='source ~/.vimrc'
 alias dockerps="docker ps --format 'table {{.Names}}\t{{.Image}}'"
 alias ctop="docker run --rm -ti --name=ctop -v /var/run/docker.sock:/var/run/docker.sock quay.io/vektorlab/ctop:latest"
-
+alias df='df -x"squashfs"'
 
 # ZSH cache
 ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
