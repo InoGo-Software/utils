@@ -94,8 +94,7 @@ endif
 " => Colors
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax enable               " Syntax theme
-" colorscheme dracula         " awesome colorscheme
-color onedark
+colorscheme dracula         " awesome colorscheme
 
 " Enable 256 colors palette in Gnome Terminal
 if $COLORTERM == 'gnome-terminal'
