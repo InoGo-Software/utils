@@ -3,7 +3,7 @@
 sudo apt update -y
 sudo apt upgrade -y
 
-sudo apt install -y zsh git vim curl wget
+sudo apt install -y zsh git vim curl wget python3.7
 
 # Install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
@@ -47,7 +47,6 @@ git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/theme
 ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
 
 # Install autojump
-sudo apt install python3.7
 git clone git://github.com/wting/autojump.git
 autojump/install.py
 rm -rf autojump
