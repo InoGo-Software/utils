@@ -42,8 +42,11 @@ chsh -s /bin/zsh
 # shellcheck source=/dev/null
 source ~/.zshrc
 
-zsh
-
 # Install spaceship theme
 git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt"
 ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
+
+# Install autojump
+git clone git://github.com/wting/autojump.git
+autojump/install.py
+rm -rf autojump
